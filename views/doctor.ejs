@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Information</title>
+</head>
+<body>
+    <header>
+        <h1>Doctor Information</h1>
+    </header>
+
+    <main>
+        <section class="doctor-info">
+            <h2>Doctor Information</h2>
+            <ul>
+                <% for (let i = 0; i < doctors.length; i++) { %>
+                    <li>Name: <%= doctors[i].Name %></li>
+                    <li>Department: <%= doctors[i].Department %></li>
+                <% } %>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Medical App</p>
+    </footer>
+</body>
+</html>

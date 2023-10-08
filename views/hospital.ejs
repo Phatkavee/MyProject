@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hospital Information</title>
+</head>
+<body>
+    <header>
+        <h1>Hospital Information</h1>
+    </header>
+
+    <main>
+        <section class="hospital-info">
+            <h2>Hospital Information</h2>
+            <ul>
+                <% for (let i = 0; i < hospitals.length; i++) { %>
+                    <li>Patient ID: <%= hospitals[i].PatientId %></li>
+                    <li>Doctor ID: <%= hospitals[i].DoctorId %></li>
+                    <li>Treatment: <%= hospitals[i].Treatment %></li>
+                <% } %>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Medical App</p>
+    </footer>
+</body>
+</html>
