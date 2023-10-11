@@ -1,29 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Patient Information</title>
+    <title>Patient</title>
+    <!-- <link rel="stylesheet" href="../css/style.css" > -->
 </head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        white-space: pre-wrap; /* ให้ข้อมูลขยายเมื่อมีข้อมูลมาก */
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    img {
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    .actions {
+        display: flex;
+        gap: 5px;
+    }
+    img {
+width: 300px;
+height: 300px;
+object-fit: cover; /* ตั้งค่า object-fit เพื่อให้รูปภาพปรับขนาดและครอบคลุมตามขนาดที่กำหนด */
+}
+</style>
 <body>
-    <header>
-        <h1>Patient Information</h1>
-    </header>
-
-    <main>
-        <section class="patient-info">
-            <h2>Patient Information</h2>
-            <ul>
-                <% for (let i = 0; i < patients.length; i++) { %>
-                    <li>Name: <%= patients[i].Name %></li>
-                    <li>Disease: <%= patients[i].Disease %></li>
-                    <li>Symptom: <%= patients[i].Symptom %></li>
-                <% } %>
-            </ul>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2023 Medical App</p>
-    </footer>
+    <h1>View Patient</h1>
+    <table class="Patient-table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Disease</th>
+        <th>Symptom</th>
+    </tr>
+    <tr>
+        <td><%= Patient.ID %></td>
+        <td><%= Patient.Name %></td>
+        <td><%= Patient.Disease %></td>
+        <td><%= Patient.Symptom %></td>
+    </tr>
+</table>
+<div class="link-center">
+    <a href="/updatePatient/<%= Patient.ID %>">Edit</a>
+    <a href="/updatePatient/<%= Patient.ID %>">Delete</a>
+    <a href="/Patients">Back to List</a>
+</div>
 </body>
 </html>

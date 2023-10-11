@@ -1,29 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Hospital Information</title>
+    <title>Hospital</title>
+    <!-- <link rel="stylesheet" href="../css/style.css" > -->
 </head>
 <body>
-    <header>
-        <h1>Hospital Information</h1>
-    </header>
-
-    <main>
-        <section class="hospital-info">
-            <h2>Hospital Information</h2>
-            <ul>
-                <% for (let i = 0; i < hospitals.length; i++) { %>
-                    <li>Patient ID: <%= hospitals[i].PatientId %></li>
-                    <li>Doctor ID: <%= hospitals[i].DoctorId %></li>
-                    <li>Treatment: <%= hospitals[i].Treatment %></li>
-                <% } %>
-            </ul>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2023 Medical App</p>
-    </footer>
+    <h1>View Hospital</h1>
+    <table class="Hospital-table">
+    <tr>
+        <th>PatientID</th>
+        <th>DoctorID</th>
+        <th>Treatment</th>
+    </tr>
+    <tr>
+        <td><%= Hospital.PatientID %></td>
+        <td><%= Hospital.DoctorID %></td>
+    </tr>
+</table>
+<div class="link-center">
+    <a href="/updateHospital/<%= Hospital.PatientID %>">Edit</a>
+    <a href="/updateHospital/<%= Hospital.PatientID %>">Delete</a>
+    <a href="/">Back to List</a>
+</div>
 </body>
 </html>
