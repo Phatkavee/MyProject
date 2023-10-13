@@ -21,9 +21,9 @@ app.get('/Doctors', async(req, res) => {
     }
 });
 
-app.get('/Doctor/:id', async(req, res) => {
+app.get('/Doctor/:ID', async(req, res) => {
     try {
-        const response = await axios.get(base_url + '/Doctor' + req.params.id);
+        const response = await axios.get(base_url + '/Doctor/' + req.params.ID);
         res.render('Doctor', { Doctor: response.data });
     } catch (err) {      
        console.error(err);
@@ -46,9 +46,9 @@ app.post("/createDoctor", async(req, res) => {
     }
 });
 
-app.get("/updateDoctor/:id", async(req, res) => {
+app.get("/updateDoctor/:ID", async(req, res) => {
     try {
-        const response = await axios.get(base_url + '/Doctor/' + req.params.id);
+        const response = await axios.get(base_url + '/Doctor/' + req.params.ID);
         res.render('updateDoctor', { Doctor: response.data });
     } catch (err) {
         console.error(err);
@@ -56,10 +56,10 @@ app.get("/updateDoctor/:id", async(req, res) => {
     }
 });
 
-app.post("/updateDoctor/:id", async(req, res) => {
+app.post("/updateDoctor/:ID", async(req, res) => {
     try {
         const data = { Name : req.body.Name, Department : req.body.Department };
-        await axios.put(base_url + '/Doctor/' + req.params.id, data);
+        await axios.put(base_url + '/Doctor/' + req.params.ID, data);
         res.redirect('/Doctors');
     } catch (err) {
         console.error(err);
@@ -67,9 +67,9 @@ app.post("/updateDoctor/:id", async(req, res) => {
     }
 });
 
-app.get("/deleteDoctor/:id", async(req, res) => {
+app.get("/deleteDoctor/:ID", async(req, res) => {
     try {
-        await axios.delete(base_url + '/Doctor/' + req.params.id);
+        await axios.delete(base_url + '/Doctor/' + req.params.ID);
             res.redirect('/Doctors');
     } catch (err) {
         console.error(err);
@@ -89,9 +89,9 @@ app.get('/Patients', async(req, res) => {
     }
 });
 
-app.get('/Patient/:id', async(req, res) => {
+app.get('/Patient/:ID', async(req, res) => {
     try {
-        const response = await axios.get(base_url + '/Patient/' + req.params.id);
+        const response = await axios.get(base_url + '/Patient/' + req.params.ID);
         res.render('Patient', { Patient: response.data });
     } catch (err) {
         console.error(err);
@@ -114,10 +114,10 @@ app.post("/createPatient", async(req, res) => {
     }
 });
 
-app.post("/updatePatient/:id", async(req, res) => {
+app.post("/updatePatient/:ID", async(req, res) => {
     try {
         const data = { Name : req.body.Name, Disease : req.body.Disease, Symptom : req.body.Symptom };
-        await axios.put(base_url + '/Patient/' + req.params.id, data);
+        await axios.put(base_url + '/Patient/' + req.params.ID, data);
         res.redirect('/Patients');
     } catch (err) {
         console.error(err);
@@ -125,9 +125,9 @@ app.post("/updatePatient/:id", async(req, res) => {
     }
 });
 
-app.get("/deletePatient/:id", async(req, res) => {
+app.get("/deletePatient/:ID", async(req, res) => {
     try {
-        await axios.delete(base_url + '/Patient/' + req.params.id);
+        await axios.delete(base_url + '/Patient/' + req.params.ID);
             res.redirect('/Patients');
     } catch (err) {
         console.error(err);

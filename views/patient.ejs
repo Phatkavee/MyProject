@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Patient</title>
+    <title>Patient Information</title>
     <!-- <link rel="stylesheet" href="../css/style.css" > -->
 </head>
 <style>
@@ -26,23 +26,16 @@
         background-color: #f2f2f2;
     }
 
-    img {
-        max-width: 100px;
-        max-height: 100px;
-    }
-
     .actions {
         display: flex;
         gap: 5px;
     }
-    img {
-width: 300px;
-height: 300px;
-object-fit: cover; /* ตั้งค่า object-fit เพื่อให้รูปภาพปรับขนาดและครอบคลุมตามขนาดที่กำหนด */
-}
+
 </style>
+
+
 <body>
-    <h1>View Patient</h1>
+    <h1>Patient Information</h1>
     <table class="Patient-table">
     <tr>
         <th>ID</th>
@@ -51,15 +44,15 @@ object-fit: cover; /* ตั้งค่า object-fit เพื่อให้�
         <th>Symptom</th>
     </tr>
     <tr>
-        <td><%= Patient.ID %></td>
-        <td><%= Patient.Name %></td>
-        <td><%= Patient.Disease %></td>
-        <td><%= Patient.Symptom %></td>
+        <td><%= Patients.ID %></td>
+        <td><%= Patients.Name %></td>
+        <td><%= Patients.Disease %></td>
+        <td><%= Patients.Symptom %></td>
     </tr>
 </table>
 <div class="link-center">
-    <a href="/updatePatient/<%= Patient.ID %>">Edit</a>
-    <a href="/updatePatient/<%= Patient.ID %>">Delete</a>
+    <a href="/updatePatient/<%= Patients.ID %>">Edit</a>
+    <a href="/updatePatient/<%= Patients.ID %>">Delete</a>
     <a href="/Patients">Back to List</a>
 </div>
 </body>

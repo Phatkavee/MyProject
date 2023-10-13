@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Medical Information</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- ใช้ CSS เพื่อปรับแต่งหน้าเว็บ -->
+</head>
+<body>
+    <header>
+        <h1>Medical Information</h1>
+    </header>
+
+    <main>
+        <section class="patient-info">
+            <h2>Patient Information</h2>
+            <ul>
+                <% for (let i = 0; i < patients.length; i++) { %>
+                    <li><%= patients[i].Name %>: <%= patients[i].Disease %></li>
+                <% } %>
+            </ul>
+        </section>
+
+        <section class="doctor-info">
+            <h2>Doctor Information</h2>
+            <ul>
+                <% for (let i = 0; i < doctors.length; i++) { %>
+                    <li><%= doctors[i].Name %>: <%= doctors[i].Department %></li>
+                <% } %>
+            </ul>
+        </section>
+
+        <section class="hospital-info">
+            <h2>Hospital Information</h2>
+            <ul>
+                <% for (let i = 0; i < hospitals.length; i++) { %>
+                    <li>Patient ID: <%= hospitals[i].PatientId %>, Doctor ID: <%= hospitals[i].DoctorId %></li>
+                    <li>Treatment: <%= hospitals[i].Treatment %></li>
+                <% } %>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Medical App</p>
+    </footer>
+</body>
+</html>
