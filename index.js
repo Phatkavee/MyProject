@@ -32,17 +32,17 @@ app.get('/Doctor', (req, res,) => {
         if (err) {
             return res.status(500).send(err);
         } else {
-            return res.send(rows);
+            return res.json(rows);
         }
     });
 });
 
-app.get('/Doctor/:id', (req, res,) => {
-    db.get('SELECT * FROM Doctor WHERE Id = ?',[req.params.id], (err, row) => {
+app.get('/Doctor/:ID', (req, res,) => {
+    db.get('SELECT * FROM Doctor WHERE ID = ?',[req.params.ID], (err, row) => {
         if (err) {
             return res.status(500).send(err);
         } else {
-            return res.send(row);
+            return res.json(row);
         }
     });
 });
@@ -58,9 +58,9 @@ app.post('/Doctor', (req, res,) => {
     });
 });
 
-app.put('/Doctor/:id', (req, res,) => {
+app.put('/Doctor/:ID', (req, res,) => {
     const Doctor = req.body;
-    db.run('UPDATE Doctor SET Name = ?, Department = ? WHERE Id = ?', [Doctor.Name, Doctor.Department, req.params.id], (err) => {
+    db.run('UPDATE Doctor SET Name = ?, Department = ? WHERE ID = ?', [Doctor.Name, Doctor.Department, req.params.ID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -69,8 +69,8 @@ app.put('/Doctor/:id', (req, res,) => {
     });
 });
 
-app.delete('/Doctor/:id', (req, res,) => {
-    db.run('DELETE FROM Doctor WHERE Id = ?', [req.params.id], (err) => {
+app.delete('/Doctor/:ID', (req, res,) => {
+    db.run('DELETE FROM Doctor WHERE ID = ?', [req.params.ID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -86,13 +86,13 @@ app.get('/Patient', (req, res,) => {
         if (err) {
             return res.status(500).send(err);
         } else {
-            return res.send(rows);
+            return res.json(rows);
         }
     });
 });
 
-app.get('/Patient/:id', (req, res,) => {
-    db.get('SELECT * FROM Patient WHERE Id = ?'[req.params.id], (err, row) => {
+app.get('/Patient/:ID', (req, res,) => {
+    db.get('SELECT * FROM Patient WHERE ID = ?'[req.params.ID], (err, row) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -112,9 +112,9 @@ app.post('/Patient', (req, res,) => {
     });
 });
 
-app.put('/Patient/:id', (req,res) => {
+app.put('/Patient/:ID', (req,res) => {
     const Patient = req.body;
-    db.run('UPDATE Patient SET Name = ?, Disease = ?, Symptoms = ? WHERE Id = ?', [Patient.Name, Patient.Disease, Patient.Symptoms, req.params.id], (err) => {
+    db.run('UPDATE Patient SET Name = ?, Disease = ?, Symptoms = ? WHERE ID = ?', [Patient.Name, Patient.Disease, Patient.Symptoms, req.params.ID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -123,8 +123,8 @@ app.put('/Patient/:id', (req,res) => {
     });
 });
 
-app.delete('/Patient/:id', (req, res,) => {
-    db.run('DELETE FROM Patient WHERE Id = ?', [req.params.id], (err) => {
+app.delete('/Patient/:ID', (req, res,) => {
+    db.run('DELETE FROM Patient WHERE ID = ?', [req.params.ID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -140,24 +140,24 @@ app.get('/Hospital', (req, res,) => {
         if (err) {
             return res.status(500).send(err);
         } else {
-            return res.send(rows);
+            return res.json(rows);
         }
     });
 });
 
-app.get('/Hospital/:id', (req, res,) => {
-    db.get('SELECT * FROM Hospital WHERE DoctorId = ?',[req.params.id], (err, row) => {
+app.get('/Hospital/:ID', (req, res,) => {
+    db.get('SELECT * FROM Hospital WHERE DoctorID = ?',[req.params.ID], (err, row) => {
         if (err) {
             return res.status(500).send(err);   
         } else {
-            return res.send(row);
+            return res.json(row);
         }
     });
 });
 
 app.post('/Hospital', (req, res,) => {
-    const { DoctorId, PatientId, Treatment } = req.body;
-    db.run('INSERT INTO Hospital (DoctorId, PatientId, Treatment) VALUES (?, ?, ?)', [req.body.DoctorId, req.body.PatientId, req.body.Treatment], (err) => {
+    const { DoctorID, PatientID, Treatment } = req.body;
+    db.run('INSERT INTO Hospital (DoctorID, PatientID, Treatment) VALUES (?, ?, ?)', [req.body.DoctorID, req.body.PatientID, req.body.Treatment], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -166,9 +166,9 @@ app.post('/Hospital', (req, res,) => {
     });
 });
 
-app.put('/Hospital/:id', (req, res,) => {
+app.put('/Hospital/:ID', (req, res,) => {
     const Hospital = req.body;
-    db.run('UPDATE Hospital SET DoctorId = ?, PatientId = ?, Treatment = ? WHERE DoctorId = ?', [Hospital.DoctorId, Hospital.PatientId, Hospital.Treatment, req.params.id], (err) => {
+    db.run('UPDATE Hospital SET DoctorID = ?, PatientID = ?, Treatment = ? WHERE DoctorID = ?', [Hospital.DoctorID, Hospital.PatientID, Hospital.Treatment, req.params.ID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -177,8 +177,8 @@ app.put('/Hospital/:id', (req, res,) => {
     });
 });
 
-app.delete('/Hospital/:id', (req, res,) => {
-    db.run('DELETE FROM Hospital WHERE DoctorId = ?', [req.params.id], (err) => {
+app.delete('/Hospital/:ID', (req, res,) => {
+    db.run('DELETE FROM Hospital WHERE DoctorID = ?', [req.params.ID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
