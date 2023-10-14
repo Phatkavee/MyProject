@@ -1,32 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>View Doctors</title>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Hospitals</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 20px;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-image: url('https://demo.kaliumtheme.com/medical/wp-content/uploads/2018/11/team-of-doctors-in-hostpital.jpg');
+        background-size: cover; /* ให้รูปครอบคลุมพื้นที่ */
+        background-position: center; /* จัดตำแหน่งรูปตรงกลาง */
+        background-repeat: no-repeat; /* ไม่ให้รูปซ้ำ */
+    }
+
+        h1 {
+            text-align: center;
+            color: #007BFF;
         }
 
         table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: rgba(255, 255, 255, 0.5); /* ลองปรับค่า Alpha เป็น 0.5 หรือต่ำกว่า */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        flex-grow: 1;
+    }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-            white-space: pre-wrap; /* ให้ข้อมูลขยายเมื่อมีข้อมูลมาก */
-        }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+        background-color: rgba(255, 255, 255, 0.9); /* สีพื้นหลัง cell */
+    }
 
         th {
             background-color: #f2f2f2;
         }
 
+        a {
+            text-decoration: none;
+            margin-right: 10px;
+            color: #007BFF;
+        }
+
         .actions {
             display: flex;
             gap: 5px;
+        }
+
+        .create-link {
+            display: block;
+            margin: 10px auto;
+            text-align: center;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .create-link:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            background-color: #002955;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        
         }
     </style>
 </head>
@@ -53,7 +102,7 @@
             </tr>
         <% } %>
     </table>
-    <a href="/createDoctor">Create New Doctor</a>
+    <a href="/createDoctor" class="create-link">Create New Doctor</a>
     <br>
     <a href="/Patients" class="create-link">View Patients</a>
     <br>
