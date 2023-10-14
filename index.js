@@ -15,14 +15,15 @@ db.run(`CREATE TABLE IF NOT EXISTS Doctor (
 db.run(`CREATE TABLE IF NOT EXISTS Patient (
     ID INTEGER PRIMARY KEY,
     Name TEXT NOT NULL,
+    Symptoms TEXT NOT NULL,
     Disease TEXT NOT NULL,
-    Symptoms TEXT NOT NULL
+    Treatment TEXT NOT NULL
 )`);
 
 db.run(`CREATE TABLE IF NOT EXISTS Hospital (
+    Name TEXT NOT NULL,
     PatientID INTEGER NOT NULL,
-    DoctorID INTEGER NOT NULL,
-    Treatment TEXT NOT NULL
+    DoctorID INTEGER NOT NULL
 )`);
 
 
@@ -102,8 +103,8 @@ app.get('/Patient/:ID', (req, res,) => {
 });
 
 app.post('/Patient', (req, res,) => {
-    const { Name, Disease, Symptoms } = req.body;
-    db.run('INSERT INTO Patient (Name, Disease, Symptoms) VALUES (?, ?, ?)', [Name, Disease, Symptoms], (err) => {
+    const { Name, Disease, Symptoms, Treatment } = req.body;
+    db.run('INSERT INTO Patient (Name, Disease, Symptoms, Treatment) VALUES (?, ?, ?, ?)', [Name, Disease, Symptoms,Treatment], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -114,7 +115,7 @@ app.post('/Patient', (req, res,) => {
 
 app.put('/Patient/:ID', (req,res) => {
     const Patient = req.body;
-    db.run('UPDATE Patient SET Name = ?, Disease = ?, Symptoms = ? WHERE ID = ?', [Patient.Name, Patient.Disease, Patient.Symptoms, req.params.ID], (err) => {
+    db.run('UPDATE Patient SET Name = ?, Disease = ?, Symptoms = ?, Treatment = ? WHERE ID = ?', [Patient.Name, Patient.Disease, Patient.Symptoms, Patient.Treatment, req.params.ID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -156,8 +157,8 @@ app.get('/Hospital/:ID', (req, res,) => {
 });
 
 app.post('/Hospital', (req, res,) => {
-    const { PatientID, DoctorID, Treatment } = req.body;
-    db.run('INSERT INTO Hospital (PatientID, DoctorID, Treatment) VALUES (?, ?, ?)', [PatientID, DoctorID, Treatment], (err) => {
+    const { Name, PatientID, DoctorID, Treatment } = req.body;
+    db.run('INSERT INTO Hospital (Name, PatientID, DoctorID) VALUES (?, ?, ?)', [Name, PatientID, DoctorID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -168,7 +169,7 @@ app.post('/Hospital', (req, res,) => {
 
 app.put('/Hospital/:ID', (req, res,) => {
     const Hospital = req.body;
-    db.run('UPDATE Hospital SET DoctorID = ?, PatientID = ?, Treatment = ? WHERE DoctorID = ?', [Hospital.PatientID, Hospital.DoctorID, Hospital.Treatment, req.params.ID], (err) => {
+    db.run('UPDATE Hospital SET Name = ?, PatientID = ?, DoctorID = ? WHERE PatientID = ?', [Hospital.Name, Hospital.PatientID, Hospital.DoctorID, req.params.ID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
