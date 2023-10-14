@@ -1,26 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>View Patient</title>
-</head>
-<body>
-    <header>
-        <h1>View Patient</h1>
-    </header>
+    <title>View Patients</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
 
-    <main>
-        <section class="patient-info">
-            <h2>View Patient</h2>
-            <ul>
-                <% for (let i = 0; i < Patients.length; i++) { %>
-                    <li>Name: <%= Patients[i].Name %></li>
-                    <li>Disease: <%= Patients[i].Disease %></li>
-                    <li>Symptom: <%= Patients[i].Symptom %></li>
-                <% } %>
-            </ul>
-        </section>
-    </main>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            white-space: pre-wrap; /* ให้ข้อมูลขยายเมื่อมีข้อมูลมาก */
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .actions {
+            display: flex;
+            gap: 5px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <h1>View Patients</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Disease</th>
+            <th>Symptoms</th>
+        </tr>
+        <% for (var i = 0; i < Patients.length; i++) { %>
+            <tr>
+                <td><%= Patients[i].ID %></td>
+                <td><%= Patients[i].Name %></td>
+                <td><%= Patients[i].Disease %></td>
+                <td><%= Patients[i].Symptoms %></td>
+                <td class="actions">
+                    <a href="/Patient/<%= Patients[i].ID %>">View</a>
+                    <a href="/updatePatient/<%= Patients[i].ID %>">Update</a>
+                    <a href="/deletePatient/<%= Patients[i].ID %>">Delete</a>
+                </td>
+            </tr>
+        <% } %>
+    </table>
+    <a href="/createPatient">Create New Patient</a>
+    <br>
+    <a href="/Doctors" class="create-link">View Doctors</a>
+    <br>
+    <a href="/" class="create-link">View Hospitals</a>
 
     <footer>
         <p>&copy; 2023 Medical App</p>

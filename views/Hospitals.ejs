@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habitat Of Animal</title>
+    <title>View Hospitals</title>
     <style>
 
     body {
@@ -13,10 +13,6 @@
         display: flex;
         flex-direction: column;
         min-height: 100vh;
-        background-image: url('https://images.unsplash.com/photo-1571215682685-cdf3d3c592ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80');
-        background-size: cover; /* ให้รูปครอบคลุมพื้นที่ */
-        background-position: center; /* จัดตำแหน่งรูปตรงกลาง */
-        background-repeat: no-repeat; /* ไม่ให้รูปซ้ำ */
     }
 
         h1 {
@@ -78,9 +74,11 @@
         
         }
     </style>
-</head> -->
+</head>
+
+
 <body>
-    <h1>Hospital</h1>
+    <h1>View Hospitals</h1>
     <table>
         <tr>
             <th>Patient ID</th>
@@ -91,17 +89,18 @@
             <tr>
                 <td><%= Hospitals[i].PatientID %></td>
                 <td><%= Hospitals[i].DoctorID%></td>
+                <td><%= Hospitals[i].Treatment %></td>
                 <td class="actions">
-                    <a href="/Hospital/<%= Hospitals[i].AnimalID %>">View</a>
+                    <a href="/Hospital/<%= Hospitals[i].PatientID %>">View</a>
                     <a href="/updateHospital/<%= Hospitals[i].PatientID %>">Update</a>
                     <a href="/deleteHospital/<%= Hospitals[i].PatientID %>">Delete</a>
                 </td>
             </tr>
         <% } %>
     </table>
-    <a href="/Hospital" class="create-link">Create New Hospital</a>
-    <a href="/Patients" class="create-link">Add Patient</a>
-    <a href="/Doctors" class="create-link">Add Doctor</a>
+    <a href="/createHospital" class="create-link">Create New Hospital</a>
+    <a href="/Patients" class="create-link">View Patients</a>
+    <a href="/Doctors" class="create-link">View Doctors</a>
     <br>
 
     <div class="footer">
