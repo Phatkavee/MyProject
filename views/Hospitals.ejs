@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Hospitals</title>
+    <title>List of Hospitals</title>
     <style>
 
     body {
@@ -78,18 +78,18 @@
 
 
 <body>
-    <h1>View Hospitals</h1>
+    <h1>List of Hospitals</h1>
     <table>
         <tr>
+            <th>Name</th>
             <th>Patient ID</th>
             <th>Doctor ID</th>
-            <th>Treatment</th>
         </tr>
         <% for (var i = 0; i < Hospitals.length; i++) { %>
             <tr>
+                <td><%= Hospitals[i].Name %></td>
                 <td><%= Hospitals[i].PatientID %></td>
                 <td><%= Hospitals[i].DoctorID%></td>
-                <td><%= Hospitals[i].Treatment %></td>
                 <td class="actions">
                     <a href="/Hospital/<%= Hospitals[i].PatientID %>">View</a>
                     <a href="/updateHospital/<%= Hospitals[i].PatientID %>">Update</a>

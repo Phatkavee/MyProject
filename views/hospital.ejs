@@ -5,17 +5,17 @@
     <!-- <link rel="stylesheet" href="../css/style.css" > -->
 </head>
 <body>
-    <h1>View Hospital</h1>
+    <h1>Hospital Information</h1>
     <table class="Hospital-table">
     <tr>
+        <th>Name</th>
         <th>PatientID</th>
         <th>DoctorID</th>
-        <th>Treatment</th>
     </tr>
     <tr>
+        <td><%= Hospital.Name %></td>
         <td><%= Hospital.PatientID %></td>
         <td><%= Hospital.DoctorID %></td>
-        <td><%= Hospital.Treatment %></td>
     </tr>
 </table>
 <div class="link-center">

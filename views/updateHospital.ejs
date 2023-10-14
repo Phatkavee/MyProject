@@ -9,19 +9,19 @@
     <h1>Update Hospital</h1>
     <form method="post" action="/updateHospital/<%= Hospital.PatientID %>">
 
+        <label for="Name">Name</label>
+        <input type="text" id="Name" name="Name" value="<%= Hospital.Name %>">
+        <br>
         <label for="PatientID">PatientID</label>
         <input type="text" id="PatientID" name="PatientID" value="<%= Hospital.PatientID %>">
         <br>
         <label for="DoctorID">DoctorID</label>
         <input type="text" id="DoctorID" name="DoctorID" value="<%= Hospital.DoctorID %>">
         <br>
-        <label for="Treatment">Treatment</label>
-        <input type="text" id="Treatment" name="Treatment" value="<%= Hospital.Treatment %>">
-        <br>
         <input type="submit" value="Update">
     </form>
-<a href="/Hospital/<%= Hospital.PatientID %>">View</a>
-<a href="/DeleteHospital/<%= Hospital.PatientID %>">Delete</a>
+<a href="/Hospital/<%= Hospital.Name %>">View</a>
+<a href="/DeleteHospital/<%= Hospital.Name %>">Delete</a>
 <a href="/">Back to List</a>
 </body>
 </html>

@@ -82,7 +82,7 @@ app.get("/deleteDoctor/:ID", async(req, res) => {
 app.get('/Patients', async(req, res) => {    
     try {
         const patientsData = await axios.get(base_url + '/Patient');
-        res.render('Patients.ejs', { Patients: patientsData.data });
+        res.render('Patients', { Patients: patientsData.data });
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
@@ -92,7 +92,7 @@ app.get('/Patients', async(req, res) => {
 app.get('/Patient/:ID', async(req, res) => {
     try {
         const response = await axios.get(base_url + '/Patient/' + req.params.ID);
-        res.render('Patient.ejs', { Patient: response.data });
+        res.render('Patient', { Patient: response.data });
     } catch (err) {
         console.error(err);
         res.status(500).send(err);
@@ -105,7 +105,7 @@ app.get("/createPatient", async(req, res) => {
 
 app.post("/createPatient", async(req, res) => {
     try {
-        const data = { Name : req.body.Name, Disease : req.body.Disease, Symptoms : req.body.Symptoms };
+        const data = { Name : req.body.Name, Disease : req.body.Disease, Symptoms : req.body.Symptoms, Treatment : req.body.Treatment };
         await axios.post(base_url + '/Patient', data);
         res.redirect('/Patients');
     } catch (err) {
@@ -116,7 +116,7 @@ app.post("/createPatient", async(req, res) => {
 
 app.post("/updatePatient/:ID", async(req, res) => {
     try {
-        const data = { Name : req.body.Name, Disease : req.body.Disease, Symptom : req.body.Symptom };
+        const data = { Name : req.body.Name, Disease : req.body.Disease, Symptom : req.body.Symptom, Treatment : req.body.Treatment };
         await axios.put(base_url + '/Patient/' + req.params.ID, data);
         res.redirect('/Patients');
     } catch (err) {
@@ -162,9 +162,9 @@ app.get("/createHospital", async(req, res) => {
 
 app.post("/createHospital", async(req, res) => {
     try {
-        const data = { PatientID : req.body.PatientID, DoctorID : req.body.DoctorID, Treatment : req.body.Treatment };
+        const data = { Name : req.body.Name, PatientID : req.body.PatientID, DoctorID : req.body.DoctorID };
         await axios.post(base_url + '/Hospital', data);
-        res.redirect('/Hospital');
+        res.redirect('/');
     } catch (err) {
         console.error(err);
         res.status(500).send(err);
@@ -184,7 +184,7 @@ app.get("/updateHospital/:PatientID", async (req, res) => {
 
 app.post("/updateHospital/:PatientID", async(req, res) => {
     try {
-        const data = { PatientID : req.body.PatientID, DoctorID : req.body.DoctorID, Treatment : req.body.Treatment };
+        const data = { Name : req.body.Name, PatientID : req.body.PatientID, DoctorID : req.body.DoctorID };
         await axios.put(base_url + '/Hospital/' + req.params.PatientID, data);
         res.redirect('/');
     } catch (err) {
@@ -203,13 +203,9 @@ app.get("/deleteHospital/:PatientID", async(req, res) => {
     }
 });
 
+
+
+
 app.listen(8000, () => {
     console.log('Listening on port 8000');
 });
-
-
-
-
-
-
-
