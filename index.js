@@ -7,21 +7,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 db.run(`CREATE TABLE IF NOT EXISTS Doctor (
-    Id INTEGER PRIMARY KEY,
+    ID INTEGER PRIMARY KEY,
     Name TEXT NOT NULL,
     Department TEXT NOT NULL
 )`);
 
 db.run(`CREATE TABLE IF NOT EXISTS Patient (
-    Id INTEGER PRIMARY KEY,
+    ID INTEGER PRIMARY KEY,
     Name TEXT NOT NULL,
     Disease TEXT NOT NULL,
     Symptoms TEXT NOT NULL
 )`);
 
 db.run(`CREATE TABLE IF NOT EXISTS Hospital (
-    DoctorId INTEGER NOT NULL,
-    PatientId INTEGER NOT NULL,
+    PatientID INTEGER NOT NULL,
+    DoctorID INTEGER NOT NULL,
     Treatment TEXT NOT NULL
 )`);
 
@@ -91,8 +91,8 @@ app.get('/Patient', (req, res,) => {
     });
 });
 
-app.get('/Patient/:ID', (req, res,) => {
-    db.get('SELECT * FROM Patient WHERE ID = ?'[req.params.ID], (err, row) => {
+app.get('/Patient/:ID', (req, res,) => { 
+    db.get('SELECT * FROM Patient WHERE ID = ?',[req.params.ID], (err, row) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -146,7 +146,7 @@ app.get('/Hospital', (req, res,) => {
 });
 
 app.get('/Hospital/:ID', (req, res,) => {
-    db.get('SELECT * FROM Hospital WHERE DoctorID = ?',[req.params.ID], (err, row) => {
+    db.get('SELECT * FROM Hospital WHERE PatientID = ?',[req.params.ID], (err, row) => {
         if (err) {
             return res.status(500).send(err);   
         } else {
@@ -156,8 +156,8 @@ app.get('/Hospital/:ID', (req, res,) => {
 });
 
 app.post('/Hospital', (req, res,) => {
-    const { DoctorID, PatientID, Treatment } = req.body;
-    db.run('INSERT INTO Hospital (DoctorID, PatientID, Treatment) VALUES (?, ?, ?)', [req.body.DoctorID, req.body.PatientID, req.body.Treatment], (err) => {
+    const { PatientID, DoctorID, Treatment } = req.body;
+    db.run('INSERT INTO Hospital (PatientID, DoctorID, Treatment) VALUES (?, ?, ?)', [PatientID, DoctorID, Treatment], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -168,7 +168,7 @@ app.post('/Hospital', (req, res,) => {
 
 app.put('/Hospital/:ID', (req, res,) => {
     const Hospital = req.body;
-    db.run('UPDATE Hospital SET DoctorID = ?, PatientID = ?, Treatment = ? WHERE DoctorID = ?', [Hospital.DoctorID, Hospital.PatientID, Hospital.Treatment, req.params.ID], (err) => {
+    db.run('UPDATE Hospital SET DoctorID = ?, PatientID = ?, Treatment = ? WHERE DoctorID = ?', [Hospital.PatientID, Hospital.DoctorID, Hospital.Treatment, req.params.ID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -178,7 +178,7 @@ app.put('/Hospital/:ID', (req, res,) => {
 });
 
 app.delete('/Hospital/:ID', (req, res,) => {
-    db.run('DELETE FROM Hospital WHERE DoctorID = ?', [req.params.ID], (err) => {
+    db.run('DELETE FROM Hospital WHERE PatientID = ?', [req.params.ID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
