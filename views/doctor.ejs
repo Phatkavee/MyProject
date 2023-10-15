@@ -3,39 +3,78 @@
 <head>
     <title>Doctor Information</title>
     <!-- <link rel="stylesheet" href="../css/style.css" > -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            color: #333;
+            min-height: 100vh;
+            background-image: url('https://www.virginiawomenscenter.com/wp-content/uploads/2018/09/AdobeStock_136041571.jpeg');
+            background-size: cover; /* ให้รูปครอบคลุมพื้นที่ */
+            background-position: center; /* จัดตำแหน่งรูปตรงกลาง */
+            background-repeat: no-repeat; /* ไม่ให้รูปซ้ำ */
+        }
+    
+            h1 {
+                display: block;
+                margin: 10px auto;
+                text-align: center;
+                background-color: #007BFF;
+                color: #fff;
+                padding: 8px 15px;
+                border-radius: 8px;
+                text-decoration: none;
+            }
+    
+            table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.5); /* ลองปรับค่า Alpha เป็น 0.5 หรือต่ำกว่า */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex-grow: 1;
+        }
+    
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9); /* สีพื้นหลัง cell */
+        }
+    
+            th {
+                background-color: #f2f2f2;
+            }
+    
+        a {
+            margin-inline-start: 5px;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        link-center {
+            display: block;
+            text-align: center;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+    </style>
 </head>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-        white-space: pre-wrap; /* ให้ข้อมูลขยายเมื่อมีข้อมูลมาก */
-    }
-
-    th {
-        background-color: #f2f2f2;
-    }
-
-    .actions {
-        display: flex;
-        gap: 5px;
-    }
-</style>
-
 
 <body>
     <h1>Doctor Information</h1>
-    <table class="Doctor-table">
+    <table class="actions">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -47,10 +86,10 @@
         <td><%= Doctor.Department %></td> 
     </tr>
 </table>
-<div class="link-center">
-    <a href="/updateDoctor/<%= Doctor.ID %>">Edit</a>
-    <a href="/updateDoctor/<%= Doctor.ID %>">Delete</a>
-    <a href="/Doctors">Back to List</a>
+<div class="button-container">
+    <a href="/updateDoctor/<%= Doctor.ID %>" class="link-center">Edit</a>
+    <a href="/updateDoctor/<%= Doctor.ID %>" class="link-center">Delete</a>
+    <a href="/Doctors" class="link-center">Back to List</a>
 </div>
 </body>
 </html>

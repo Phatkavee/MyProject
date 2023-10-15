@@ -20,8 +20,14 @@
     }
 
         h1 {
+            display: block;
+            margin: 10px auto;
             text-align: center;
-            color: #007BFF;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 8px;
+            text-decoration: none;
         }
 
         table {
@@ -52,6 +58,7 @@
 
         .actions {
             display: flex;
+            justify-content: space-between;
             gap: 5px;
         }
 
@@ -107,9 +114,7 @@
         <% } %>
     </table>
     <a href="/createPatient" class="create-link">Create New Patient</a>
-    <br>
     <a href="/Doctors" class="create-link">View Doctors</a>
-    <br>
     <a href="/" class="create-link">View Hospitals</a>
 
 </body>

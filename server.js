@@ -114,9 +114,20 @@ app.post("/createPatient", async(req, res) => {
     }
 });
 
+app.get("/updatePatient/:ID", async (req, res) => {
+    try {
+        const response = await axios.get(
+            base_url + '/Patient/' + req.params.ID);
+            res.render('updatePatient', { Patient: response.data });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send(err);
+    }
+});
+
 app.post("/updatePatient/:ID", async(req, res) => {
     try {
-        const data = { Name : req.body.Name, Disease : req.body.Disease, Symptom : req.body.Symptom, Treatment : req.body.Treatment };
+        const data = { Name : req.body.Name, Disease : req.body.Disease, Symptoms : req.body.Symptoms, Treatment : req.body.Treatment };
         await axios.put(base_url + '/Patient/' + req.params.ID, data);
         res.redirect('/Patients');
     } catch (err) {

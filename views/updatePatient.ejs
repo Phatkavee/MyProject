@@ -4,26 +4,99 @@
 <head>
     <title>Update Patient</title>
     <!-- <link rel="stylesheet" href="../css/style.css" > -->
+    <style>
+        body {
+            background-image: url('https://www.virginiawomenscenter.com/wp-content/uploads/2018/09/AdobeStock_136041571.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #fff;
+            text-align: center;
+            text-emphasis-color: #fff;
+            background-color: #12a136;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            background-size: cover;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* จัดให้เนื้อหาอยู่ตรงกลางแนวนอน */
+            justify-content: center; /* จัดให้เนื้อหาอยู่ตรงกลางแนวตั้ง */
+            text-align: center; /* จัดให้ข้อความอยู่ตรงกลาง */
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            width: auto;
+            background-color: #12a136;
+            color: #fff;
+
+        }
+
+        a {
+            margin-inline: 5px;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row; 
+            justify-content: center;
+        }
+    </style>
 </head>
+
+
 <body>
     <h1>Update Patient</h1>
     <form method="post" action="/updatePatient/<%= Patient.ID %>">
         <label for="Name">Name</label>
         <input type="text" id="Name" name="Name" value="<%= Patient.Name %>">
         <br>
-        <label for="Disease">Disease</label>
-        <input type="text" id="Disease" name="Disease" value="<%= Patient.Disease %>">
-        <br>
         <label for="Symptoms">Symptoms</label>
         <input type="text" id="Symptoms" name="Symptoms" value="<%= Patient.Symptoms %>">
+        <br>
+        <label for="Disease">Disease</label>
+        <input type="text" id="Disease" name="Disease" value="<%= Patient.Disease %>">
         <br>
         <label for="Treatment">Treatment</label>
         <input type="text" id="Treatment" name="Treatment" value="<%= Patient.Treatment %>">
         <br>
         <input type="submit" value="Update">
     </form>
-<a href="/Patient/<%= Patient.ID %>">View</a>
-<a href="/DeletePatient/<%= Patient.ID %>">Delete</a>
-<a href="/Patients">Back to List</a>
+    <br>
+    <div style="display: flex; flex-direction: row; justify-content: center;">
+    <a href="/Patient/<%= Patient.ID %>"> View </a>
+    <a href="/DeletePatient/<%= Patient.ID %>"> Delete </a>
+    <a href="/Patients"> Back to List </a>
+    </div>
+
 </body>
 </html>

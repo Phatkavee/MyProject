@@ -3,8 +3,76 @@
 <head>
     <title>Hospital Information</title>
     <!-- <link rel="stylesheet" href="../css/style.css" > -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            color: #333;
+            min-height: 100vh;
+            background-image: url('https://www.azernews.az/media/pictures/hospital-new.jpg');
+            background-size: cover; /* ให้รูปครอบคลุมพื้นที่ */
+            background-position: center; /* จัดตำแหน่งรูปตรงกลาง */
+            background-repeat: no-repeat; /* ไม่ให้รูปซ้ำ */
+        }
+    
+            h1 {
+                display: block;
+                margin: 10px auto;
+                text-align: center;
+                background-color: #007BFF;
+                color: #fff;
+                padding: 8px 15px;
+                border-radius: 8px;
+                text-decoration: none;
+            }
+    
+            table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.5); /* ลองปรับค่า Alpha เป็น 0.5 หรือต่ำกว่า */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex-grow: 1;
+        }
+    
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9); /* สีพื้นหลัง cell */
+        }
+    
+            th {
+                background-color: #f2f2f2;
+            }
+    
+        a {
+            margin-inline-start: 5px;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        link-center {
+            display: block;
+            text-align: center;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+    </style>
 </head>
-<body>
+
+<div>
     <h1>Hospital Information</h1>
     <table class="Hospital-table">
     <tr>
@@ -18,10 +86,12 @@
         <td><%= Hospital.DoctorID %></td>
     </tr>
 </table>
-<div class="link-center">
-    <a href="/updateHospital/<%= Hospital.PatientID %>">Edit</a>
-    <a href="/updateHospital/<%= Hospital.PatientID %>">Delete</a>
-    <a href="/">Back to List</a>
-</div>
+<br>
+    <div class="button-container">
+        <a href="/updateHospital/<%= Hospital.PatientID %>" class="link-center">Edit</a>
+        <a href="/updateHospital/<%= Hospital.PatientID %>" class="link-center">Delete</a>
+        <a href="/" class="link-center">Back to List</a>
+    </div>
+
 </body>
 </html>
