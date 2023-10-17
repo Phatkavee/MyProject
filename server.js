@@ -13,8 +13,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Doctor
 app.get('/Doctors', async(req, res) => {
     try {
-        const response = await axios.get(base_url + '/Doctor');
-        res.render('Doctors', { Doctors: response.data });
+        const doctordata = await axios.get(base_url + '/Doctor');
+        res.render('Doctors', { Doctors: doctordata.data });
     } catch (err) {      
        console.log(err);
        res.status(500).send(err);
@@ -23,8 +23,8 @@ app.get('/Doctors', async(req, res) => {
 
 app.get('/Doctor/:ID', async(req, res) => {
     try {
-        const response = await axios.get(base_url + '/Doctor/' + req.params.ID);
-        res.render('Doctor', { Doctor: response.data });
+        const doctordata = await axios.get(base_url + '/Doctor/' + req.params.ID);
+        res.render('Doctor', { Doctor: doctordata.data});
     } catch (err) {      
        console.error(err);
        res.status(500).send(err);
@@ -37,8 +37,8 @@ app.get("/createDoctor", async(req, res) => {
 
 app.post("/createDoctor", async(req, res) => {
     try {
-        const data = { Name : req.body.Name, Department : req.body.Department };
-        await axios.post(base_url + '/Doctor', data);
+        const doctordata = { Name : req.body.Name, Department : req.body.Department };
+        await axios.post(base_url + '/Doctor', doctordata);
         res.redirect('/Doctors');
     } catch (err) {
         console.error(err);
@@ -48,8 +48,8 @@ app.post("/createDoctor", async(req, res) => {
 
 app.get("/updateDoctor/:ID", async(req, res) => {
     try {
-        const response = await axios.get(base_url + '/Doctor/' + req.params.ID);
-        res.render('updateDoctor', { Doctor: response.data });
+        const doctordata = await axios.get(base_url + '/Doctor/' + req.params.ID);
+        res.render('updateDoctor', { Doctor: doctordata.data });
     } catch (err) {
         console.error(err);
         res.status(500).send(err);
@@ -58,8 +58,8 @@ app.get("/updateDoctor/:ID", async(req, res) => {
 
 app.post("/updateDoctor/:ID", async(req, res) => {
     try {
-        const data = { Name : req.body.Name, Department : req.body.Department };
-        await axios.put(base_url + '/Doctor/' + req.params.ID, data);
+        const doctordata = { Name : req.body.Name, Department : req.body.Department };
+        await axios.put(base_url + '/Doctor/' + req.params.ID, doctordata);
         res.redirect('/Doctors');
     } catch (err) {
         console.error(err);
@@ -81,8 +81,8 @@ app.get("/deleteDoctor/:ID", async(req, res) => {
 // Patient
 app.get('/Patients', async(req, res) => {    
     try {
-        const patientsData = await axios.get(base_url + '/Patient');
-        res.render('Patients', { Patients: patientsData.data });
+        const patientdata = await axios.get(base_url + '/Patient');
+        res.render('Patients', { Patients: patientdata.data });
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
@@ -91,8 +91,8 @@ app.get('/Patients', async(req, res) => {
 
 app.get('/Patient/:ID', async(req, res) => {
     try {
-        const response = await axios.get(base_url + '/Patient/' + req.params.ID);
-        res.render('Patient', { Patient: response.data });
+        const patientdata = await axios.get(base_url + '/Patient/' + req.params.ID);
+        res.render('Patient', { Patient: patientdata.data });
     } catch (err) {
         console.error(err);
         res.status(500).send(err);
@@ -105,8 +105,8 @@ app.get("/createPatient", async(req, res) => {
 
 app.post("/createPatient", async(req, res) => {
     try {
-        const data = { Name : req.body.Name, Disease : req.body.Disease, Symptoms : req.body.Symptoms, Treatment : req.body.Treatment };
-        await axios.post(base_url + '/Patient', data);
+        const patientdata = { Name : req.body.Name, Disease : req.body.Disease, Symptoms : req.body.Symptoms, Treatment : req.body.Treatment };
+        await axios.post(base_url + '/Patient', patientdata);
         res.redirect('/Patients');
     } catch (err) {
         console.error(err);
@@ -116,9 +116,9 @@ app.post("/createPatient", async(req, res) => {
 
 app.get("/updatePatient/:ID", async (req, res) => {
     try {
-        const response = await axios.get(
+        const patientdata = await axios.get(
             base_url + '/Patient/' + req.params.ID);
-            res.render('updatePatient', { Patient: response.data });
+            res.render('updatePatient', { Patient: patientdata.data });
     } catch (err) {
         console.error(err);
         res.status(500).send(err);
@@ -127,8 +127,8 @@ app.get("/updatePatient/:ID", async (req, res) => {
 
 app.post("/updatePatient/:ID", async(req, res) => {
     try {
-        const data = { Name : req.body.Name, Disease : req.body.Disease, Symptoms : req.body.Symptoms, Treatment : req.body.Treatment };
-        await axios.put(base_url + '/Patient/' + req.params.ID, data);
+        const patientdata = { Name : req.body.Name, Disease : req.body.Disease, Symptoms : req.body.Symptoms, Treatment : req.body.Treatment };
+        await axios.put(base_url + '/Patient/' + req.params.ID, patientdata);
         res.redirect('/Patients');
     } catch (err) {
         console.error(err);
@@ -149,18 +149,18 @@ app.get("/deletePatient/:ID", async(req, res) => {
 // Hospital
 app.get('/', async(req, res) => {
     try {
-        const response = await axios.get(base_url + '/Hospital');
-        res.render('Hospitals', { Hospitals: response.data });
+        const hospitaldata = await axios.get(base_url + '/Hospital');
+        res.render('Hospitals', { Hospitals: hospitaldata.data });
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
     }
 });
 
-app.get('/Hospital/:PatientID', async(req, res) => {
+app.get('/Hospital/:DoctorID', async(req, res) => {
     try {
-        const response = await axios.get(base_url + '/Hospital/' + req.params.PatientID);
-        res.render('Hospital', { Hospital: response.data });
+        const hospitaldata = await axios.get(base_url + '/Hospital/' + req.params.DoctorID);
+        res.render('Hospital', { Hospital: hospitaldata.data });
     } catch (err) {
         console.error(err);
         res.status(500).send(err);
@@ -173,8 +173,8 @@ app.get("/createHospital", async(req, res) => {
 
 app.post("/createHospital", async(req, res) => {
     try {
-        const data = { Name : req.body.Name, PatientID : req.body.PatientID, DoctorID : req.body.DoctorID };
-        await axios.post(base_url + '/Hospital', data);
+        const hospitaldata = { DoctorID : req.body.DoctorID, PatientID : req.body.PatientID };
+        await axios.post(base_url + '/Hospital', hospitaldata);
         res.redirect('/');
     } catch (err) {
         console.error(err);
@@ -182,21 +182,21 @@ app.post("/createHospital", async(req, res) => {
     }
 });
 
-app.get("/updateHospital/:PatientID", async (req, res) => {
+app.get("/updateHospital/:DoctorID", async (req, res) => {
     try {
-        const response = await axios.get(
-            base_url + '/Hospital/' + req.params.PatientID);
-            res.render('updateHospital', { Hospital: response.data });
+        const hospitaldata = await axios.get(
+            base_url + '/Hospital/' + req.params.DoctorID);
+            res.render('updateHospital', { Hospital: hospitaldata.data });
     } catch (err) {
         console.error(err);
         res.status(500).send('err');
     }
 });
 
-app.post("/updateHospital/:PatientID", async(req, res) => {
+app.post("/updateHospital/:DoctorID", async(req, res) => {
     try {
-        const data = { Name : req.body.Name, PatientID : req.body.PatientID, DoctorID : req.body.DoctorID };
-        await axios.put(base_url + '/Hospital/' + req.params.PatientID, data);
+        const hospitaldata = { DoctorID : req.body.DoctorID, PatientID : req.body.PatientID };
+        await axios.put(base_url + '/Hospital/' + req.params.DoctorID, hospitaldata);
         res.redirect('/');
     } catch (err) {
         console.error(err);
@@ -204,16 +204,15 @@ app.post("/updateHospital/:PatientID", async(req, res) => {
     }
 });
 
-app.get("/deleteHospital/:PatientID", async(req, res) => {
+app.get("/deleteHospital/:DoctorID", async(req, res) => {
     try {
-        await axios.delete(base_url + '/Hospital/' + req.params.PatientID);
+        await axios.delete(base_url + '/Hospital/' + req.params.DoctorID);
             res.redirect('/');
     } catch (err) {
         console.error(err);
         res.status(500).send(err);
     }
 });
-
 
 
 

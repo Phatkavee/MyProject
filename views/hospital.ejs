@@ -72,26 +72,23 @@
     </style>
 </head>
 
-<div>
+<body>
     <h1>Hospital Information</h1>
-    <table class="Hospital-table">
-    <tr>
-        <th>Name</th>
-        <th>PatientID</th>
-        <th>DoctorID</th>
-    </tr>
-    <tr>
-        <td><%= Hospital.Name %></td>
-        <td><%= Hospital.PatientID %></td>
-        <td><%= Hospital.DoctorID %></td>
-    </tr>
-</table>
-<br>
+    <table>
+        <tr>
+            <th>Doctor Name</th>
+            <th>Patient Name</th>
+        </tr>
+            <tr>
+                <td><%= Hospital.DoctorName %></td>
+                <td><%= Hospital.PatientName %></td>
+            </tr>
+    </table>
+    <br>
     <div class="button-container">
-        <a href="/updateHospital/<%= Hospital.PatientID %>" class="link-center">Edit</a>
-        <a href="/updateHospital/<%= Hospital.PatientID %>" class="link-center">Delete</a>
+        <a href="/updateHospital/<%= Hospital.DoctorID %>" class="link-center">Edit</a>
+        <a href="/updateHospital/<%= Hospital.DoctorID %>" class="link-center">Delete</a>
         <a href="/" class="link-center">Back to List</a>
     </div>
-
 </body>
 </html>
