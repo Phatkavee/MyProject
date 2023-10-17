@@ -21,9 +21,8 @@ db.run(`CREATE TABLE IF NOT EXISTS Patient (
 )`);
 
 db.run(`CREATE TABLE IF NOT EXISTS Hospital (
-    Name TEXT NOT NULL,
-    PatientID INTEGER NOT NULL,
-    DoctorID INTEGER NOT NULL
+    DoctorID INTEGER PRIMARY KEY,
+    PatientID INTEGER NOT NULL
 )`);
 
 
@@ -147,7 +146,7 @@ app.get('/Hospital', (req, res,) => {
 });
 
 app.get('/Hospital/:ID', (req, res,) => {
-    db.get('SELECT * FROM Hospital WHERE PatientID = ?',[req.params.ID], (err, row) => {
+    db.get('SELECT * FROM Hospital WHERE DoctorID = ?',[req.params.ID], (err, row) => {
         if (err) {
             return res.status(500).send(err);   
         } else {
@@ -157,8 +156,8 @@ app.get('/Hospital/:ID', (req, res,) => {
 });
 
 app.post('/Hospital', (req, res,) => {
-    const { Name, PatientID, DoctorID, Treatment } = req.body;
-    db.run('INSERT INTO Hospital (Name, PatientID, DoctorID) VALUES (?, ?, ?)', [Name, PatientID, DoctorID], (err) => {
+    const { DoctorID, PatientID } = req.body;
+    db.run('INSERT INTO Hospital (DoctorID, PatientID) VALUES (?, ?)', [DoctorID, PatientID ], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -169,7 +168,7 @@ app.post('/Hospital', (req, res,) => {
 
 app.put('/Hospital/:ID', (req, res,) => {
     const Hospital = req.body;
-    db.run('UPDATE Hospital SET Name = ?, PatientID = ?, DoctorID = ? WHERE PatientID = ?', [Hospital.Name, Hospital.PatientID, Hospital.DoctorID, req.params.ID], (err) => {
+    db.run('UPDATE Hospital SET PatientID = ?, DoctorID = ? WHERE DoctorID = ?', [Hospital.DoctorID, Hospital.PatientID, req.params.ID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -179,7 +178,7 @@ app.put('/Hospital/:ID', (req, res,) => {
 });
 
 app.delete('/Hospital/:ID', (req, res,) => {
-    db.run('DELETE FROM Hospital WHERE PatientID = ?', [req.params.ID], (err) => {
+    db.run('DELETE FROM Hospital WHERE DoctorID = ?', [req.params.ID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
