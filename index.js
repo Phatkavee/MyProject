@@ -146,12 +146,55 @@ app.get('/Hospitals', (req, res,) => {
     });
 });
 
-app.get('/Hospital', (req, res,) => {
-    db.get('SELECT Doctor.Name AS DoctorName, Patient.Name AS PatientName FROM Hospital JOIN Doctor ON Hospital.DoctorID = Doctor.ID JOIN Patient ON Hospital.PatientID = Patient.ID WHERE Hospital.DoctorID = ?', (err, row) => {
+app.get('/Hospital/:DoctorID', (req, res) => {
+    db.get('SELECT * FROM Hospital WHERE DoctorID = ?', req.params.DoctorID, (err, row) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            if (!row) {
+                res.status(404).send('Hospital Not found');
+            } else {
+                res.json(row);
+            }
+        }
+    });
+});
+
+// app.get('/Hospital', (req, res,) => {
+//     db.get('SELECT Doctor.Name AS DoctorName, GROUP_CONCAT(Patient.Name) AS PatientName FROM Hospital INNER JOIN Doctor ON Hospital.DoctorID = Doctor.ID INNER JOIN Patient ON Hospital.PatientID = Patient.ID GROUP BY Doctor.ID', (err, row) => {
+//         if (err) {
+//             return res.status(500).send(err);   
+//         } else {
+//             return res.json(row);
+//         }
+//     });
+// });
+
+app.get('/Hospital', (req, res) => {
+    db.all('SELECT Doctor.Name AS DoctorName, Patient.Name AS PatientName FROM Hospital INNER JOIN Doctor ON Hospital.DoctorID = Doctor.ID INNER JOIN Patient ON Hospital.PatientID = Patient.ID', (err, rows) => {
         if (err) {
             return res.status(500).send(err);   
         } else {
-            return res.json(row);
+            const result = [];
+            const doctors = {};
+
+            rows.forEach(row => {
+                const doctorName = row.DoctorName;
+                const patientName = row.PatientName;
+                if (!doctors[doctorName]) {
+                    doctors[doctorName] = [];
+                }
+                doctors[doctorName].push(patientName);
+            });
+
+            for (const doctorName in doctors) {
+                result.push({
+                    DoctorName: doctorName,
+                    PatientName: doctors[doctorName].join(',')
+                });
+            }
+
+            return res.json(result);
         }
     });
 });
@@ -169,7 +212,7 @@ app.post('/Hospital', (req, res,) => {
 
 app.put('/Hospital/:DoctorID', (req, res,) => {
     const Hospital = req.body;
-    db.run('UPDATE Hospital SET DoctorID = ?, PatientID = ?, WHERE DoctorID = ?', [Hospital.DoctorID, Hospital.PatientID, req.params.DoctorID], (err) => {
+    db.run('UPDATE Hospital SET DoctorID = ?, PatientID = ? WHERE DoctorID = ?', [Hospital.DoctorID, Hospital.PatientID, req.params.DoctorID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
