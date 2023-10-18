@@ -79,18 +79,10 @@
             <th>Doctor Name</th>
             <th>Patient Name</th>
         </tr>
-        <% for (let i = 0; i < Doctors.length; i++) { %>
+        <% for (let i = 0; i < Hospital.length; i++) { %>
             <tr>
-                <td><%= Doctors[i].Name %></td>
-                <td>
-                    <ul>
-                        <% for (let j = 0; j < Patients.length; j++) { %>
-                            <% if (Patients[j].DoctorID === Doctors[i].ID) { %>
-                                <li><%= Patients[j].Name %></li>
-                            <% } %>
-                        <% } %>
-                    </ul>
-                </td>
+                <td><%= Hospital[i].DoctorName %></td>
+                <td><%= Hospital[i].PatientName %></td>
             </tr>
         <% } %>
     </table>
