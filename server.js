@@ -186,12 +186,11 @@ app.post("/createHospital", async(req, res) => {
 
 app.get("/updateHospital/:DoctorID", async (req, res) => {
     try {
-        const hospitaldata = await axios.get(
-            base_url + '/Hospital/' + req.params.DoctorID);
-            res.render('updateHospital', { Hospital: hospitaldata.data });
+        const hospitaldata = await axios.get(base_url + '/Hospital/' + req.params.DoctorID);
+        res.render('updateHospital', { Hospital: hospitaldata.data });
     } catch (err) {
         console.error(err);
-        res.status(500).send('err');
+        res.status(500).send(err);
     }
 });
 
