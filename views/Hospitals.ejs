@@ -100,7 +100,6 @@
                     <td><%= Hospitals[i].DoctorID %></td>
                     <td><%= Hospitals[i].PatientID %></td>
                 <td class="actions">
-                    <a href="/Hospital/:DoctorID<%= Hospitals[i].DoctorID %>">View</a>
                     <a href="/updateHospital/<%= Hospitals[i].DoctorID %>">Update</a>
                     <a href="/deleteHospital/<%= Hospitals[i].DoctorID %>">Delete</a>
                 </td>
@@ -108,6 +107,7 @@
             <% } %>
     </table>
         <a href="/createHospital" class="create-link">Create Hospital</a>
+        <a href="/Hospital" class="create-link">Hospital Information</a>
         <a href="/Doctors" class="create-link">View Doctors</a>
         <a href="/Patients" class="create-link">View Patients</a>
     <br>

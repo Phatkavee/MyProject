@@ -149,7 +149,7 @@ app.get("/deletePatient/:ID", async(req, res) => {
 // Hospital
 app.get('/', async(req, res) => {
     try {
-        const hospitaldata = await axios.get(base_url + '/Hospital');
+        const hospitaldata = await axios.get(base_url + '/Hospitals');
         res.render('Hospitals', { Hospitals: hospitaldata.data });
     } catch (err) {
         console.log(err);
@@ -157,10 +157,12 @@ app.get('/', async(req, res) => {
     }
 });
 
-app.get('/Hospital/:DoctorID', async(req, res) => {
+app.get('/Hospital', async(req, res) => {
     try {
-        const hospitaldata = await axios.get(base_url + '/Hospital/' + req.params.DoctorID);
-        res.render('Hospital', { Hospital: hospitaldata.data });
+        const hospitaldata = await axios.get(base_url + '/Hospital');
+        const doctordata = await axios.get(base_url + '/Doctor');
+        const patientdata = await axios.get(base_url + '/Patient');
+        res.render('Hospital', { Hospital: hospitaldata.data, Hospitals: hospitaldata.data, Doctors: hospitaldata.data, Patients: hospitaldata.data});
     } catch (err) {
         console.error(err);
         res.status(500).send(err);
