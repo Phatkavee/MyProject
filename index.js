@@ -21,8 +21,9 @@ db.run(`CREATE TABLE IF NOT EXISTS Patient (
 )`);
 
 db.run(`CREATE TABLE IF NOT EXISTS Hospital (
-    DoctorID INTEGER PRIMARY KEY,
-    PatientID INTEGER NOT NULL
+    DoctorID INTEGER NOT NULL,
+    PatientID INTEGER NOT NULL,
+    PRIMARY KEY (DoctorID, PatientID)
 )`);
 
 
@@ -135,7 +136,7 @@ app.delete('/Patient/:ID', (req, res,) => {
 
 
 //CRUD for Hospital
-app.get('/Hospital', (req, res,) => {
+app.get('/Hospitals', (req, res,) => {
     db.all('SELECT * FROM Hospital', (err, rows) => {
         if (err) {
             return res.status(500).send(err);
@@ -145,8 +146,8 @@ app.get('/Hospital', (req, res,) => {
     });
 });
 
-app.get('/Hospital/:ID', (req, res,) => {
-    db.get('SELECT * FROM Hospital WHERE DoctorID = ?',[req.params.ID], (err, row) => {
+app.get('/Hospital', (req, res,) => {
+    db.get('SELECT Doctor.Name AS DoctorName, Patient.Name AS PatientName FROM Hospital JOIN Doctor ON Hospital.DoctorID = Doctor.ID JOIN Patient ON Hospital.PatientID = Patient.ID WHERE Hospital.DoctorID = ?', (err, row) => {
         if (err) {
             return res.status(500).send(err);   
         } else {
@@ -166,9 +167,9 @@ app.post('/Hospital', (req, res,) => {
     });
 });
 
-app.put('/Hospital/:ID', (req, res,) => {
+app.put('/Hospital/:DoctorID', (req, res,) => {
     const Hospital = req.body;
-    db.run('UPDATE Hospital SET PatientID = ?, DoctorID = ? WHERE DoctorID = ?', [Hospital.DoctorID, Hospital.PatientID, req.params.ID], (err) => {
+    db.run('UPDATE Hospital SET DoctorID = ?, PatientID = ?, WHERE DoctorID = ?', [Hospital.DoctorID, Hospital.PatientID, req.params.DoctorID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
@@ -177,8 +178,8 @@ app.put('/Hospital/:ID', (req, res,) => {
     });
 });
 
-app.delete('/Hospital/:ID', (req, res,) => {
-    db.run('DELETE FROM Hospital WHERE DoctorID = ?', [req.params.ID], (err) => {
+app.delete('/Hospital/:DoctorID', (req, res,) => {
+    db.run('DELETE FROM Hospital WHERE DoctorID = ?', [req.params.DoctorID], (err) => {
         if (err) {
             return res.status(500).send(err);
         } else {
