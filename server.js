@@ -3,7 +3,7 @@ const app = express();
 const axios = require('axios');
 const bodyParser = require('body-parser');
 
-const base_url = 'http://localhost:4000';
+const base_url = 'http://localhost:5000';
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
@@ -214,7 +214,6 @@ app.get("/deleteHospital/:DoctorID", async(req, res) => {
         res.status(500).send(err);
     }
 });
-
 
 
 app.listen(8000, () => {
