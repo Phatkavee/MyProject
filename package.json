@@ -7,6 +7,5 @@
     "http": "^0.0.1-security",
     "init": "^0.1.2",
     "nodemon": "^3.0.1",
-    "start": "nodemon/node server.js"
   }
 }
