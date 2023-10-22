@@ -33,10 +33,10 @@ body {
     }
 
 th, td {
-border: 1px solid #ddd;
-padding: 12px;
-text-align: center;
-background-color: rgba(255, 255, 255, 0.9); /* สีพื้นหลัง cell */
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9); /* สีพื้นหลัง cell */
 }
 
     th {
