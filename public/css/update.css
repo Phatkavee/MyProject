@@ -1,0 +1,74 @@
+body {
+    background-image: url('/hospital.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    color: #fff;
+    text-align: center;
+    text-emphasis-color: #fff;
+    background-color: #12a136;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.8);
+    background-size: cover;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* จัดให้เนื้อหาอยู่ตรงกลางแนวนอน */
+    justify-content: center; /* จัดให้เนื้อหาอยู่ตรงกลางแนวตั้ง */
+    text-align: center; /* จัดให้ข้อความอยู่ตรงกลาง */
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    width: auto;
+    background-color: #12a136;
+    color: #fff;
+
+}
+
+a {
+    margin-inline-start: 5px;
+    text-decoration: none;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    
+}
+
+link-center {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+}
