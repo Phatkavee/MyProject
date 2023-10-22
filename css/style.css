@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Hospital </title>
 
-    <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin: 20px;
@@ -84,34 +77,3 @@
             text-align: center;
         
         }
-    </style>
-</head>
-
-<body>
-    <h1> Hospital </h1>
-    <table>
-        <tr>
-            <th>Doctor ID</th>
-            <th>Patient ID</th>
-        </tr>
-            <tr>
-            <% for (var i = 0; i < Hospitals.length; i++) { %>
-                    <td><%= Hospitals[i].DoctorID %></td>
-                    <td><%= Hospitals[i].PatientID %></td>
-                <td class="actions">
-                    <a href="/updateHospital/<%= Hospitals[i].DoctorID %>">Update</a>
-                    <a href="/deleteHospital/<%= Hospitals[i].DoctorID %>">Delete</a>
-                </td>
-            </tr>
-            <% } %>
-    </table>
-        <a href="/createHospital" class="create-link">Create Hospital</a>
-        <a href="/Hospital" class="create-link">Hospital Information</a>
-        <a href="/Doctors" class="create-link">View Doctors</a>
-        <a href="/Patients" class="create-link">View Patients</a>
-    <br>
-    <div class="footer">
-        &copy; 2023 Welcome to Hospital
-    </div>
-</body>
-</html>
