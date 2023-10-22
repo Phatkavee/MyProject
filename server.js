@@ -8,7 +8,7 @@ const base_url = 'http://localhost:5000';
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(express.static(__dirname + '/public'));
 
 // Doctor
 app.get('/Doctors', async(req, res) => {
