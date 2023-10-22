@@ -2,7 +2,7 @@ const express = require('express');
 const sqlite3 = require('sqlite3');
 const app = express();
 
-const db = new sqlite3.Database('./db.sqlite');
+const db = new sqlite3.Database('./Database/db.sqlite');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
